@@ -1,0 +1,21 @@
+# Dependencies and build output
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Python environments and bytecode
+.venv/
+backend/.venv/
+__pycache__/
+*.py[cod]
+
+# Local configuration and runtime state
+.env
+.env.*
+!.env.example
+.DS_Store
+backend/*.db
+backend/*.db-shm
+backend/*.db-wal
+backend/evacuation_log.csv
+bridge_spool.jsonl
