@@ -2,7 +2,29 @@
 
 **AI-Enabled Low-Cost Real-Time Mine Subsidence Monitoring & Early Warning System**
 
+**Smart India Hackathon 2026 · Problem Statement SIH26025**
+
 SAMADHAAN brings ESP32 telemetry, scenario simulation, and mine operations views into one platform. It is a research and demonstration prototype, not a certified safety system.
+
+## Working Prototype
+
+### Physical Hardware Node
+
+![SAMADHAAN physical hardware prototype](20260928_150040.jpg)
+
+The prototype node demonstrates the physical sensing and edge-monitoring layer built around the ESP32, OLED, MPU6050 and connected deformation/interaction sensing hardware.
+
+### Live Monitoring Dashboard
+
+![SAMADHAAN live monitoring dashboard](WhatsApp%20Image%202026-09-29%20at%202.14.30%20PM.jpeg)
+
+The dashboard provides mine-level monitoring, node status, incident visibility, risk state and operational views. Values or incidents marked as simulation/estimated are intentionally distinguished from live telemetry.
+
+### Scenario Lab & Digital Twin
+
+![SAMADHAAN Scenario Lab and Digital Twin](WhatsApp%20Image%202026-09-29%20at%202.13.07%20PM.jpeg)
+
+Scenario Lab runs controlled demonstrations through the same processing pipeline, while the Digital Twin view presents illustrative mine geometry, node state, risk and route information.
 
 ## Highlights
 
