@@ -115,3 +115,12 @@ The bridge detects available serial devices and reconnects if the connection is 
 ## Notes
 
 The project contains both physical-node data and controlled test/simulation data. These are kept separate in the application where applicable. Risk values, forecasts and digital-twin views are intended for prototype evaluation and should not be treated as engineering or operational safety decisions.
+
+
+## Live demo
+
+The public judge demo is designed to run without the backend. Open the **Scenario Lab** and use the scenario buttons to change sensor values and risk state interactively.
+
+- Demo route: `/demo`
+- Source code: https://github.com/nikhilkumar200408/coalmine
+- Demo values are simulated and labelled; they are not live mine measurements.
