@@ -1,6 +1,6 @@
 # SAMADHAAN
 
-**Mine operations intelligence for early warning, incident response, and decision support.**
+**AI-Enabled Low-Cost Real-Time Mine Subsidence Monitoring & Early Warning System**
 
 SAMADHAAN brings ESP32 telemetry, scenario simulation, and mine operations views into one platform. It is a research and demonstration prototype, not a certified safety system.
 
