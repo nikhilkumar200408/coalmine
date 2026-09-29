@@ -6,7 +6,7 @@
 
 SAMADHAAN is a hardware + software prototype for monitoring mine-related ground movement and sensor conditions. The project combines an ESP32 node with a local backend and web dashboard for monitoring, testing and demonstration.
 
-> This is a prototype for demonstration and evaluation. It is not a certified mine-safety system.
+
 
 ## Prototype
 
