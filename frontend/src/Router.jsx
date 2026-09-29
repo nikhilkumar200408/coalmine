@@ -11,14 +11,13 @@ export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
+        <Route path="/" element={<DemoPage />} />
         <Route element={<StaffLayout />}>
           <Route path="/government" element={<GovernmentPage />} />
           <Route path="/engineer" element={<EngineerPage />} />
           <Route path="/nodes/:nodeId" element={<EngineerPage />} />
         </Route>
         <Route path="/worker" element={<WorkerPage />} />
-        <Route path="/demo" element={<DemoPage />} />
         <Route path="/resident" element={<ResidentPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
