@@ -4,7 +4,7 @@
 
 **Smart India Hackathon 2026 · Problem Statement SIH26025**
 
-SAMADHAAN is a hardware + software prototype for monitoring mine-related ground movement and sensor conditions. The project combines an ESP32 node with a local backend and web dashboard for monitoring, testing and demonstration.
+SAMADHAAN is a hardware + software prototype for monitoring mine-related ground movement and sensor conditions. The project combines an ESP32 node with a local backend and web dashboard for monitoring, testing and controlled scenario analysis.
 
 
 
@@ -26,7 +26,7 @@ The dashboard shows node status, sensor values, mine locations, incidents and th
 
 ![SAMADHAAN Scenario Lab](WhatsApp%20Image%202026-09-29%20at%202.13.07%20PM.jpeg)
 
-The Scenario Lab is used to test different sensor conditions without waiting for a real mine event. The Digital Twin view is a visual representation for testing and demonstration; the displayed mine geometry is not surveyed mine data.
+The Scenario Lab is used to test different sensor conditions without waiting for a real mine event. The Digital Twin view is a visual representation for controlled testing; the displayed mine geometry is not surveyed mine data.
 
 ## Main Parts
 
@@ -117,10 +117,10 @@ The bridge detects available serial devices and reconnects if the connection is 
 The project contains both physical-node data and controlled test/simulation data. These are kept separate in the application where applicable. Risk values, forecasts and digital-twin views are intended for prototype evaluation and should not be treated as engineering or operational safety decisions.
 
 
-## Live demo
+## Public monitoring console
 
-The public judge demo is designed to run without the backend. Open the **Scenario Lab** and use the scenario buttons to change sensor values and risk state interactively.
+The public console can be opened without the backend. Use the scenario controls to change sensor conditions and observe the corresponding risk, map, charts and subsurface visualizations.
 
-- Demo route: `/demo`
+- Public console: `/`
 - Source code: https://github.com/nikhilkumar200408/coalmine
-- Demo values are simulated and labelled; they are not live mine measurements.
+- Scenario values are simulated and clearly labelled; they are not live mine measurements.
