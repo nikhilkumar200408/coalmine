@@ -67,4 +67,3 @@ If more than one serial device is available, select the ESP32 when prompted. A p
 
 ## Important Limitations
 
-SAMADHAAN is for demonstration and evaluation. Risk scores, forecasts, routes, and digital-twin geometry are estimates or illustrative model outputs; they are not independently validated measurements or engineering determinations. Some nodes and mine data are simulated. Alerts shown in the dashboard are not connected to underground alarms, dispatch, or evacuation hardware. Do not use this prototype to make operational safety decisions or as a substitute for qualified personnel and certified equipment.
