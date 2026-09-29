@@ -43,7 +43,7 @@ function simulatedReading(tick, scenario) {
 }
 
 function demoScenario() {
-  return localStorage.getItem('samadhaan_demo_scenario') || 'normal'
+  return localStorage.getItem('samadhaan_scenario') || 'normal'
 }
 
 export function useTelemetry() {
@@ -72,8 +72,8 @@ export function useTelemetry() {
   }, [])
 
   useEffect(() => {
-    const isDemo = window.location.pathname === '/demo'
-    if (isDemo) {
+    const isPublicConsole = window.location.pathname === '/'
+    if (isPublicConsole) {
       let tick = 0
       const seed = Array.from({ length: 24 }, (_, i) => simulatedReading(i, demoScenario()))
       setHistory(seed)
