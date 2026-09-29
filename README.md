@@ -65,5 +65,3 @@ If more than one serial device is available, select the ESP32 when prompted. A p
 - [`backend/samadhaan/`](backend/samadhaan/): telemetry processing, risk engine, simulation, persistence, and view-state assembly.
 - [`frontend/src/`](frontend/src/): React dashboards, components, and telemetry hooks.
 
-## Important Limitations
-
