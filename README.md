@@ -1,55 +1,74 @@
 # SAMADHAAN
 
-**AI-Enabled Low-Cost Real-Time Mine Subsidence Monitoring & Early Warning System**
+**Mine Subsidence Monitoring & Early Warning System**
 
 **Smart India Hackathon 2026 · Problem Statement SIH26025**
 
-SAMADHAAN brings ESP32 telemetry, scenario simulation, and mine operations views into one platform. It is a research and demonstration prototype, not a certified safety system.
+SAMADHAAN is a hardware + software prototype for monitoring mine-related ground movement and sensor conditions. The project combines an ESP32 node with a local backend and web dashboard for monitoring, testing and demonstration.
 
-## Working Prototype
+> This is a prototype for demonstration and evaluation. It is not a certified mine-safety system.
 
-### Physical Hardware Node
+## Prototype
 
-![SAMADHAAN physical hardware prototype](20260928_150040.jpg)
+### Hardware Node
 
-The prototype node demonstrates the physical sensing and edge-monitoring layer built around the ESP32, OLED, MPU6050 and connected deformation/interaction sensing hardware.
+![SAMADHAAN hardware prototype](20260928_150040.jpg)
 
-### Live Monitoring Dashboard
+The physical node is built around an ESP32 with an OLED display, MPU6050 and connected sensing hardware. The firmware reads the sensors available on the node and sends the readings to the software side.
 
-![SAMADHAAN live monitoring dashboard](WhatsApp%20Image%202026-09-29%20at%202.14.30%20PM.jpeg)
+### Monitoring Dashboard
 
-The dashboard provides mine-level monitoring, node status, incident visibility, risk state and operational views. Values or incidents marked as simulation/estimated are intentionally distinguished from live telemetry.
+![SAMADHAAN monitoring dashboard](WhatsApp%20Image%202026-09-29%20at%202.14.30%20PM.jpeg)
 
-### Scenario Lab & Digital Twin
+The dashboard shows node status, sensor values, mine locations, incidents and the current risk state. Some screens use test or simulated data for demonstration.
 
-![SAMADHAAN Scenario Lab and Digital Twin](WhatsApp%20Image%202026-09-29%20at%202.13.07%20PM.jpeg)
+### Scenario Lab / Digital Twin
 
-Scenario Lab runs controlled demonstrations through the same processing pipeline, while the Digital Twin view presents illustrative mine geometry, node state, risk and route information.
+![SAMADHAAN Scenario Lab](WhatsApp%20Image%202026-09-29%20at%202.13.07%20PM.jpeg)
 
-## Highlights
+The Scenario Lab is used to test different sensor conditions without waiting for a real mine event. The Digital Twin view is a visual representation for testing and demonstration; the displayed mine geometry is not surveyed mine data.
 
-- Role-specific dashboards for engineers, government teams, workers, and residents.
-- FastAPI service for sensor ingestion, live WebSocket updates, incident workflows, and persisted telemetry.
-- Explainable risk scoring that combines sensor evidence, data confidence, and node health.
-- Digital-twin views, safe-route recommendations, and a Scenario Lab for controlled demonstrations.
-- USB serial bridge with device discovery, reconnect handling, and local buffering when the backend is unavailable.
-- ESP32 firmware that reports sensor availability instead of presenting unwired sensors as live readings.
+## Main Parts
 
-## Architecture
+- ESP32-based sensing node
+- OLED display for local status
+- MPU6050 and deformation/interaction sensing
+- FastAPI backend for telemetry and WebSocket updates
+- React dashboard for monitoring
+- Serial bridge for connecting the physical node to the backend
+- Scenario Lab for controlled test cases
+- Risk calculation using sensor readings and data confidence
+
+## How it works
 
 ```text
-ESP32 ── USB ── serial_bridge.py ──┐
-                                   ├── FastAPI ── WebSocket ── React dashboard
-Scenario Lab ──────────────────────┘
+ESP32
+  │
+  └── USB Serial
+        │
+        ▼
+  serial_bridge.py
+        │
+        ▼
+     FastAPI
+        │
+        ├── Telemetry / Risk processing
+        │
+        └── WebSocket
+                │
+                ▼
+          React Dashboard
+
+Scenario Lab ───────────────► FastAPI
 ```
 
-The firmware also contains an optional Wi-Fi path. USB is the default hardware workflow in this repository. Simulated events and estimated values are identified separately from real telemetry in the application.
+USB is the default hardware connection in the current repository. The firmware also contains an optional Wi-Fi path.
 
 ## Run Locally
 
-Requirements: Python 3, Node.js, and npm.
+Requirements: Python 3, Node.js and npm.
 
-Start the backend in one terminal:
+### Backend
 
 ```bash
 cd backend
@@ -59,7 +78,9 @@ pip install -r requirements.txt
 uvicorn main:app --host 127.0.0.1 --port 8000 --reload
 ```
 
-Start the dashboard in another terminal:
+### Frontend
+
+Open another terminal:
 
 ```bash
 cd frontend
@@ -67,23 +88,30 @@ npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite. The backend API documentation is available at `http://127.0.0.1:8000/docs` while the service is running.
+Open the URL shown by Vite. When the backend is running, its API documentation is available at `http://127.0.0.1:8000/docs`.
 
-## Connect an ESP32
+## Connecting the ESP32
 
-Flash [`firmware_samadhaan_node.ino`](firmware_samadhaan_node.ino) to the board, connect it over USB, then run the bridge from the repository root with the backend environment active:
+Flash [`firmware_samadhaan_node.ino`](firmware_samadhaan_node.ino) to the ESP32 and connect the board over USB.
+
+From the repository root:
 
 ```bash
 pip install pyserial requests
 python3 serial_bridge.py
 ```
 
-If more than one serial device is available, select the ESP32 when prompted. A port can also be supplied explicitly, for example `python3 serial_bridge.py --port /dev/cu.usbmodemXXXX` on macOS. Set the firmware's sensor-connection flags to match the hardware actually installed.
+The bridge detects available serial devices and reconnects if the connection is interrupted. Sensor connection flags in the firmware should match the hardware that is actually connected.
 
-## Project Guide
+## Project Files
 
-- [DEMO_GUIDE.md](DEMO_GUIDE.md): dashboard flows, scenarios, hardware checks, and a real-versus-simulated data guide.
-- [API.md](API.md): HTTP and WebSocket endpoints.
-- [`backend/samadhaan/`](backend/samadhaan/): telemetry processing, risk engine, simulation, persistence, and view-state assembly.
-- [`frontend/src/`](frontend/src/): React dashboards, components, and telemetry hooks.
+- [`firmware_samadhaan_node.ino`](firmware_samadhaan_node.ino) — ESP32 firmware
+- [`serial_bridge.py`](serial_bridge.py) — USB serial bridge
+- [`backend/`](backend/) — API, telemetry and processing
+- [`frontend/`](frontend/) — React dashboard
+- [`DEMO_GUIDE.md`](DEMO_GUIDE.md) — demonstration steps and test cases
+- [`API.md`](API.md) — API and WebSocket details
 
+## Notes
+
+The project contains both physical-node data and controlled test/simulation data. These are kept separate in the application where applicable. Risk values, forecasts and digital-twin views are intended for prototype evaluation and should not be treated as engineering or operational safety decisions.
