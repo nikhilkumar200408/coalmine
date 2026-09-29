@@ -4,6 +4,7 @@ import GovernmentPage from './pages/GovernmentPage'
 import EngineerPage from './pages/EngineerPage'
 import WorkerPage from './pages/WorkerPage'
 import ResidentPage from './pages/ResidentPage'
+import DemoPage from './pages/DemoPage'
 
 /**
  * Government and Engineer are internal/staff views sharing one layout with a section switcher.
@@ -20,8 +21,9 @@ export default function Router() {
           <Route path="/nodes/:nodeId" element={<EngineerPage />} />
         </Route>
         <Route path="/worker" element={<WorkerPage />} />
+        <Route path="/demo" element={<DemoPage />} />
         <Route path="/resident" element={<ResidentPage />} />
-        <Route path="*" element={<Navigate to="/engineer" replace />} />
+        <Route path="*" element={<Navigate to="/demo" replace />} />
       </Routes>
     </BrowserRouter>
   )
