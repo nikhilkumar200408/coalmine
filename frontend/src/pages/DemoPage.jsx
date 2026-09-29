@@ -22,7 +22,7 @@ export default function DemoPage() {
     <div>
       <div className="sticky top-0 z-[2000] bg-slate-950 text-white border-b border-slate-700 px-4 py-3">
         <div className="max-w-[1800px] mx-auto flex flex-wrap items-center gap-2">
-          <span className="font-semibold text-sm mr-2">SAMADHAAN · LIVE DEMO</span>
+          <span className="font-semibold text-sm mr-2">SAMADHAAN · MONITORING CONSOLE</span>
           {SCENARIOS.map(([key, label]) => (
             <button
               key={key}
@@ -32,7 +32,7 @@ export default function DemoPage() {
               {label}
             </button>
           ))}
-          <span className="ml-auto text-[10px] text-slate-400">Browser simulation · no backend required</span>
+          <span className="ml-auto text-[10px] text-slate-400">Local test mode · backend optional</span>
         </div>
       </div>
       <App />
