@@ -192,3 +192,9 @@ The public console can be opened without the backend. Use the scenario controls 
 The project contains both physical-node data and controlled scenario data. These are kept separate in the application where applicable. Risk values, forecasts and digital-twin views are intended for prototype evaluation and should not be treated as engineering or operational safety decisions.
 
 The current system is a student engineering prototype, not a certified structural-safety instrument. Field deployment would require site-specific calibration, ruggedisation, reliable communications, long-duration testing and validation against established mine-survey measurements.
+
+## Validation & Evidence
+
+For a clear separation between demonstrated functionality and deployment-stage extensions, see [VALIDATION.md](VALIDATION.md). Project evidence is listed in [evidence/README.md](evidence/README.md).
+
+The repository deliberately avoids presenting proposed LoRa/4G communication or mine-site-trained ML as already validated hardware/software. This keeps the public implementation claims aligned with the current prototype.
