@@ -211,58 +211,6 @@ export default function App() {
           </div>
         </Section>
 
-        <Section delay={0.04} hover={false}>
-          <div className="bg-white border border-slate-200 rounded shadow-sm overflow-hidden">
-            <div className="px-5 py-4 border-b border-slate-200">
-              <div className="flex items-end justify-between gap-4 flex-wrap">
-                <div>
-                  <p className="text-[10px] font-semibold tracking-[0.18em] text-sky-600 uppercase">System Architecture</p>
-                  <h2 className="font-semibold text-base text-slate-900 mt-1">Key Innovation &amp; Novelty</h2>
-                  <p className="text-xs text-slate-500 mt-1 max-w-3xl">Integrated capabilities designed for continuous, resilient and interpretable mine subsidence monitoring.</p>
-                </div>
-                <span className="text-[10px] font-medium text-slate-500 border border-slate-200 rounded px-2 py-1">7 CORE CAPABILITIES</span>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-slate-200">
-<div className="p-4 min-h-[150px]">
-  <div className="flex items-center gap-2 mb-3"><span className="font-mono text-[10px] font-semibold text-sky-600">01</span><div className="h-px flex-1 bg-slate-100"></div></div>
-  <h3 className="text-xs font-semibold text-slate-800 leading-5">Distributed Surface Sensing</h3>
-  <p className="text-[11px] leading-5 text-slate-500 mt-2">Multiple nodes create a spatial picture of ground behaviour.</p>
-</div>
-<div className="p-4 min-h-[150px]">
-  <div className="flex items-center gap-2 mb-3"><span className="font-mono text-[10px] font-semibold text-sky-600">02</span><div className="h-px flex-1 bg-slate-100"></div></div>
-  <h3 className="text-xs font-semibold text-slate-800 leading-5">Multi-Sensor Evidence Correlation</h3>
-  <p className="text-[11px] leading-5 text-slate-500 mt-2">Tilt + deformation + vibration + trend instead of single-sensor alarms.</p>
-</div>
-<div className="p-4 min-h-[150px]">
-  <div className="flex items-center gap-2 mb-3"><span className="font-mono text-[10px] font-semibold text-sky-600">03</span><div className="h-px flex-1 bg-slate-100"></div></div>
-  <h3 className="text-xs font-semibold text-slate-800 leading-5">Edge Intelligence</h3>
-  <p className="text-[11px] leading-5 text-slate-500 mt-2">Local filtering, anomaly detection and event verification at the node.</p>
-</div>
-<div className="p-4 min-h-[150px]">
-  <div className="flex items-center gap-2 mb-3"><span className="font-mono text-[10px] font-semibold text-sky-600">04</span><div className="h-px flex-1 bg-slate-100"></div></div>
-  <h3 className="text-xs font-semibold text-slate-800 leading-5">Adaptive Sampling</h3>
-  <p className="text-[11px] leading-5 text-slate-500 mt-2">Low-power monitoring during normal conditions; high-frequency sensing during suspected events.</p>
-</div>
-<div className="p-4 min-h-[150px]">
-  <div className="flex items-center gap-2 mb-3"><span className="font-mono text-[10px] font-semibold text-sky-600">05</span><div className="h-px flex-1 bg-slate-100"></div></div>
-  <h3 className="text-xs font-semibold text-slate-800 leading-5">Explainable Risk Engine</h3>
-  <p className="text-[11px] leading-5 text-slate-500 mt-2">Risk score is derived from interpretable sensor evidence.</p>
-</div>
-<div className="p-4 min-h-[150px]">
-  <div className="flex items-center gap-2 mb-3"><span className="font-mono text-[10px] font-semibold text-sky-600">06</span><div className="h-px flex-1 bg-slate-100"></div></div>
-  <h3 className="text-xs font-semibold text-slate-800 leading-5">Resilient Offline Architecture</h3>
-  <p className="text-[11px] leading-5 text-slate-500 mt-2">Local event storage + continued monitoring during communication loss.</p>
-</div>
-<div className="p-4 min-h-[150px]">
-  <div className="flex items-center gap-2 mb-3"><span className="font-mono text-[10px] font-semibold text-sky-600">07</span><div className="h-px flex-1 bg-slate-100"></div></div>
-  <h3 className="text-xs font-semibold text-slate-800 leading-5">GIS + Temporal Risk Mapping</h3>
-  <p className="text-[11px] leading-5 text-slate-500 mt-2">Combines where deformation is occurring with how it is evolving over time.</p>
-</div>
-            </div>
-          </div>
-        </Section>
-
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-5">
           <Section delay={0.05} className="bg-white border border-slate-200 border-t-4 border-t-sky-500 rounded xl:col-span-2 flex flex-col shadow-sm">
             <div className="px-4 py-3 border-b border-slate-200 flex items-center justify-between">
