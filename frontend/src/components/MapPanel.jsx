@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { MapContainer, TileLayer, CircleMarker, Circle, Popup, Polygon, LayersControl } from 'react-leaflet'
 import { fetchNodes } from '../hooks/useTelemetry'
 import { severityMeta } from '../utils/severity'
@@ -29,6 +29,7 @@ function riskRadiusMeters(score) {
 export default function MapPanel({ riskScore = 0, severity = 'SAFE' }) {
   const [nodes, setNodes] = useState(null)
   const [failed, setFailed] = useState(false)
+  const mapRef = useRef(null)
 
   useEffect(() => {
     fetchNodes()
@@ -58,7 +59,7 @@ export default function MapPanel({ riskScore = 0, severity = 'SAFE' }) {
         Imagery) remain genuinely free and keyless, so the map always
         renders regardless of any API credentials.
       */}
-      <MapContainer center={center} zoom={14} className="w-full h-full" zoomControl={false}>
+      <MapContainer ref={mapRef} center={center} zoom={14} className="w-full h-full" zoomControl={true} scrollWheelZoom={true} dragging={true} touchZoom={true} doubleClickZoom={true} boxZoom={true} keyboard={true} whenReady={(e) => { setTimeout(() => e.target.invalidateSize(), 100) }}>
         <LayersControl position="topright">
           <BaseLayer checked name="Street">
             <TileLayer
@@ -117,6 +118,17 @@ export default function MapPanel({ riskScore = 0, severity = 'SAFE' }) {
           </div>
         ))}
       </MapContainer>
+
+      <div className="absolute top-2 right-2 z-[1000] flex flex-col gap-1">
+        <button
+          type="button"
+          onClick={() => mapRef.current?.setView(center, 14, { animate: true })}
+          className="bg-white/95 border border-slate-200 rounded px-2 py-1 text-[10px] font-medium text-slate-700 shadow-sm hover:bg-white pointer-events-auto"
+          title="Reset map view"
+        >
+          Reset
+        </button>
+      </div>
 
       <div className="absolute bottom-2 left-2 bg-white/95 backdrop-blur-sm border border-slate-200 rounded px-2 py-1.5 text-[10px] text-slate-600 leading-tight z-[1000] pointer-events-none shadow-sm">
         <div className="flex items-center gap-1.5">
