@@ -1,4 +1,4 @@
-# SAMADHAAN v6 — DEMO_GUIDE
+# SAMADHAAN v6 — EVALUATION_GUIDE
 
 > Prototype early-warning / decision-support platform. **Not a certified structural-safety instrument.**
 > Real hardware and simulation are always visibly separated (badges: REAL · SIMULATION · ESTIMATED · UNAVAILABLE).
@@ -35,17 +35,17 @@ Flash `firmware_samadhaan_node.ino` (set `ENABLE_WIFI` and the `DHT_CONNECTED / 
 ## 2. The 2-minute evaluator demo
 1. **Connect ESP32** – header shows `Real NODE-01: CONNECTED (USB-Serial)`; NODE-01 card is badged **REAL**. Disconnected sensors (strain, sound, DHT if unwired) read **NOT CONNECTED** — never an invented number.
 2. **Show real telemetry** – Engineer → *Command*: NODE-01 SAFE, *WHY 0?* panel lists each evidence source; *Nodes & detail → Sensor health* shows MPU6050 HEALTHY and others NOT CONNECTED.
-3. **Run false-alarm** – *Scenario Lab → RUN FALSE ALARM* (DEMO A): vibration ↑, tilt & strain normal → **TEMPORARY ANOMALY → NO SUBSIDENCE ALERT**; timeline shows `TRANSIENT DISTURBANCE REJECTED`.
+3. **Run false-alarm** – *Scenario Lab → RUN FALSE ALARM* (TEST A): vibration ↑, tilt & strain normal → **TEMPORARY ANOMALY → NO SUBSIDENCE ALERT**; timeline shows `TRANSIENT DISTURBANCE REJECTED`.
 4. **No false subsidence alert** – Analytics → *Event classification* counts it under TEMPORARY DISTURBANCE; Incidents stays empty.
-5. **Run progressive subsidence** – *RUN SUBSIDENCE* (DEMO B, ~60 s). Purple banner: `SIMULATION — NOT LIVE MINE TELEMETRY`; real NODE-01 keeps streaming independently.
+5. **Run progressive subsidence** – *RUN SUBSIDENCE* (TEST B, ~60 s). Purple banner: `SIMULATION — NOT LIVE MINE TELEMETRY`; real NODE-01 keeps streaming independently.
 6. **Explainable risk** – *WHY nn?* : tilt/strain/persistence/trend/vibration contributions add up; press *Explain risk*.
 7. **Digital twin** – node colours, heatmap and (Cross-section tab) surface profile respond to the same scenario state.
 8. **Worker alert** – switch to **Worker** (pick Sector B/A): `MOVE TO SAFE ZONE`/`EVACUATE SECTOR` + "Recommended evacuation route — engineer confirmation required".
 9. **Safe route** – route steps, distance, walking time and *why this route* (blocked sections listed); Twin shows the green animated route.
-10. **Disconnect network** – run *RUN NETWORK FAILURE* (DEMO C) *or* unplug/stop the backend while the bridge runs.
+10. **Disconnect network** – run *RUN NETWORK FAILURE* (TEST C) *or* unplug/stop the backend while the bridge runs.
 11. **Offline buffering** – banner `OFFLINE MODE — telemetry buffering locally (N packets)`; (bridge: `backend unreachable -> buffered locally`).
 12. **Reconnect → synchronisation** – `CONNECTION RESTORED — SYNCING` → `SYNC COMPLETE` (Scenario Lab + System health).
-Other demos: *RUN NODE FAILURE* (node goes OFFLINE, neighbours continue, confidence drops), *RUN MASS INCIDENT* (multi-node, ventilation FAILED, route recalculated, several incidents). **RESET** restores demo state and never deletes real telemetry history.
+Other controlled tests: *RUN NODE FAILURE* (node goes OFFLINE, neighbours continue, confidence drops), *RUN MASS INCIDENT* (multi-node, ventilation FAILED, route recalculated, several incidents). **RESET** restores scenario state and never deletes real telemetry history.
 
 ## 3. Sensor-failure honesty check
 Scenario Lab → *Sensor failure* (MPU6050 OFF at 40 %): the node shows **LIMITED ASSESSMENT — DATA CONFIDENCE DEGRADED**, never SAFE.
@@ -56,7 +56,7 @@ Scenario Lab → *Sensor failure* (MPU6050 OFF at 40 %): the node shows **LIMITE
 | NODE-01 pitch/roll/deviation, sound (if wired), RSSI, link mode, uptime, firmware | **REAL** (from ESP32) |
 | NODE-01 temperature/humidity | **REAL** only if DHT is wired and read; else **UNAVAILABLE** |
 | NODE-01 strain/flex, battery (until wired) | **UNAVAILABLE** |
-| NODE-02…08, all scenario telemetry, worker counts, worker location, ventilation | **SIMULATION / MODELLED** (demo configuration) |
+| NODE-02…08, all scenario telemetry, worker counts, worker location, ventilation | **SIMULATION / MODELLED** (illustrative configuration) |
 | Mine geometry, node coordinates, other mines in Government view | **DEMO CONFIG** (illustrative, not surveyed) |
 | Risk score, confidence, deformation index, heatmaps, surface profile, trend projection | **ESTIMATED** (derived mathematically) |
 | History graphs | **OBSERVED** (stored telemetry) |
@@ -68,7 +68,7 @@ Scenario Lab → *Sensor failure* (MPU6050 OFF at 40 %): the node shows **LIMITE
 - [ ] Kill/restart backend: dashboard shows *Backend offline*, auto-reconnects (exponential backoff); bridge buffers then `SYNC`
 - [ ] Unplug ESP32: NODE-01 → OFFLINE ("Last received n s ago"); replug → RECOVERED event
 - [ ] Disconnect MPU6050: LIMITED ASSESSMENT (not SAFE)
-- [ ] DEMO A–E each run deterministically; RESET returns to nominal
+- [ ] TEST A–E each run deterministically; RESET returns to nominal
 - [ ] Incident lifecycle: ACKNOWLEDGE → ASSIGN → INVESTIGATE → RESOLVE, action log recorded
 - [ ] Calibrate node (keep stationary) → baseline saved; baseline survives restart
 - [ ] Baseline learning FROZEN during CAUTION/HIGH, active scenario, sensor fault
