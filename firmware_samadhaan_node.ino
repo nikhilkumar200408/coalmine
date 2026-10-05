@@ -200,9 +200,9 @@ void connectWiFi() {
 // ---- v6: HONEST sensor availability. Set these to match what is PHYSICALLY wired. A sensor that is
 // not connected is sent as JSON null + *_available=false -- the dashboard will show "NOT CONNECTED"
 // instead of an invented number. (No flex/strain sensor exists on this node: strain is always null.)
-const bool DHT_CONNECTED   = true;    // DHT11 on GPIO2
-const bool SOUND_CONNECTED = true;    // analog sound sensor on GPIO1
-const bool STRAIN_CONNECTED = false;  // flex/strain sensor: NOT wired
+const bool DHT_CONNECTED   = false;   // DHT11 is not physically connected in the current validated build
+const bool SOUND_CONNECTED = false;   // analog sound sensor is not physically connected in the current validated build
+const bool STRAIN_CONNECTED = false;  // flex/strain telemetry is not implemented/validated in this firmware
 const char* FW_VERSION = "v6.0";
 unsigned long telemetrySeq = 0;
 bool dhtEverRead = false;
@@ -447,12 +447,12 @@ void setup() {
       pSum += p;
       rSum += r;
     }
-    sSum += analogRead(SOUND_PIN);
+      if (SOUND_CONNECTED) sSum += analogRead(SOUND_PIN);
     delay(40);
   }
   baselinePitch = pSum / N;
   baselineRoll  = rSum / N;
-  baselineSound = sSum / N;
+  baselineSound = SOUND_CONNECTED ? (sSum / N) : 0;
   filteredPitch = baselinePitch;
   filteredRoll  = baselineRoll;
   filteredSound = baselineSound;
@@ -497,10 +497,14 @@ void loop() {
     batteryPct = readBatteryPercentage();
   }
 
-  int rawSound = analogRead(SOUND_PIN);
-  filteredSound = (ALPHA * rawSound) + ((1.0 - ALPHA) * filteredSound);
-  float soundDevRaw = filteredSound - baselineSound;
-  soundLevel = (int)constrain(soundDevRaw, 0, 4095);
+  if (SOUND_CONNECTED) {
+    int rawSound = analogRead(SOUND_PIN);
+    filteredSound = (ALPHA * rawSound) + ((1.0 - ALPHA) * filteredSound);
+    float soundDevRaw = filteredSound - baselineSound;
+    soundLevel = (int)constrain(soundDevRaw, 0, 4095);
+  } else {
+    soundLevel = 0;
+  }
 
   int16_t ax, ay, az;
   mpuOk = readRawAccel(ax, ay, az);   // v6: reported honestly in telemetry (mpu_available)
