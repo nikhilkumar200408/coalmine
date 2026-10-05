@@ -10,12 +10,12 @@ const SCENARIOS = [
   ['outage', 'Communication Outage'],
 ]
 
-export default function DemoPage() {
-  const [scenario, setScenario] = useState(() => localStorage.getItem('samadhaan_demo_scenario') || 'normal')
+export default function MonitoringConsole() {
+  const [scenario, setScenario] = useState(() => localStorage.getItem('samadhaan_scenario') || 'normal')
 
   useEffect(() => {
-    localStorage.setItem('samadhaan_demo_scenario', scenario)
-    window.dispatchEvent(new Event('samadhaan-demo-scenario'))
+    localStorage.setItem('samadhaan_scenario', scenario)
+    window.dispatchEvent(new Event('samadhaan-scenario-change'))
   }, [scenario])
 
   return (
@@ -32,7 +32,7 @@ export default function DemoPage() {
               {label}
             </button>
           ))}
-          <span className="ml-auto text-[10px] text-slate-400">Local test mode · backend optional</span>
+          <span className="ml-auto text-[10px] text-slate-400">Local simulation · backend optional</span>
         </div>
       </div>
       <App />
