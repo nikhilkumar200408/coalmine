@@ -6,11 +6,11 @@
 
 ## 1. Current physical-node path
 
-The validated physical communication path in the current build is:
+**Validated current prototype path:**
 
-ESP32 → USB Serial → `serial_bridge.py` → FastAPI → WebSocket → Dashboard
+ESP32-C3 → USB Serial → `serial_bridge.py` → FastAPI → WebSocket → React Dashboard
 
-The current repository does not present LoRa or cellular communication as validated hardware.
+Wi-Fi is disabled in the current validated configuration. LoRa, gateway and 4G/cellular are **proposed field-deployment layers**, not claimed as implemented hardware in the current prototype.
 
 ## 2. Quick evaluation flow
 
@@ -27,8 +27,8 @@ The current repository does not present LoRa or cellular communication as valida
 
 | Item | Status |
 |---|---|
-| Physical ESP32 telemetry | REAL when the node is connected |
-| Sensor values from unwired sensors | UNAVAILABLE |
+| Physical ESP32 + MPU6050 telemetry | REAL when the node is connected |
+| DHT11 / sound / flex telemetry not validated in current firmware | UNAVAILABLE / NOT CLAIMED |
 | Scenario Lab telemetry | SIMULATED / CONTROLLED |
 | Risk score | ESTIMATED prototype score |
 | Map geometry and illustrative boundaries | ILLUSTRATIVE |
@@ -43,6 +43,7 @@ The current repository does not present LoRa or cellular communication as valida
 - MPU6050-based motion sensing
 - USB serial telemetry
 - FastAPI backend and WebSocket updates
+- React dashboard connected to the backend
 - React monitoring dashboard
 - Explainable sensor-based risk scoring
 - Controlled scenario testing
