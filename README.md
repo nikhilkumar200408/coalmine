@@ -12,7 +12,7 @@ SAMADHAAN is a hardware + software prototype for monitoring mine-related ground 
 
 ![SAMADHAAN hardware prototype](20260928_150040.jpg)
 
-The physical node is built around an ESP32-C3 with an OLED display, MPU6050 and connected sensing hardware. The firmware reads the sensors that are physically available on the node and sends their readings to the software side.
+The physical node is built around an ESP32-C3 with an OLED display and MPU6050. In the current validated build, MPU6050 motion telemetry is the confirmed physical sensing path. Other sensor interfaces are present in the prototype/firmware, but they are not claimed as validated unless the corresponding sensor is physically connected and reporting.
 
 ### Monitoring Dashboard
 
@@ -39,6 +39,7 @@ The Scenario Lab is used to test different sensor conditions without waiting for
 - Explainable sensor-based risk scoring
 - Controlled scenario testing
 - Map, trends, node health and risk visualisation
+- Controlled scenario data clearly separated from physical-node telemetry
 
 ### Proposed for field deployment
 
@@ -56,7 +57,7 @@ This separation is intentional: the current prototype is used to validate the se
 
 - ESP32-C3 sensing node
 - OLED display for local status
-- MPU6050 and deformation sensing
+- MPU6050 motion sensing and sensor interfaces
 - FastAPI backend for telemetry and WebSocket updates
 - React dashboard for monitoring
 - Serial bridge for connecting the physical node to the backend
@@ -85,7 +86,9 @@ FastAPI Backend
     React Dashboard
 ```
 
-USB serial is the validated physical-node communication path in the current repository. The firmware also contains an optional Wi-Fi path.
+**Validated now:** ESP32-C3 → USB Serial → `serial_bridge.py` → FastAPI → WebSocket → React Dashboard.
+
+The firmware also contains an optional Wi-Fi path, but Wi-Fi is disabled in the current validated configuration. **LoRa, gateway and 4G/cellular are proposed field-deployment layers, not claimed as implemented in the current prototype.**
 
 ### Proposed field architecture
 
@@ -116,7 +119,7 @@ The LoRa, gateway and cellular layers are part of the proposed field architectur
 1. The surface node measures available motion/deformation-related signals.
 2. The current prototype sends physical-node telemetry through USB serial to the backend.
 3. The backend processes telemetry and provides live updates to the dashboard.
-4. The risk layer combines sensor deviation and temporal evidence into an explainable prototype score.
+4. The current risk layer combines available sensor deviation and temporal evidence into an explainable prototype score. It is not presented as a trained mine-site ML prediction model.
 5. Controlled scenarios allow engineers to test increasing deformation, vibration, network loss and other conditions.
 6. A future field deployment can extend the same workflow to distributed nodes, wireless communication and mine-site calibrated anomaly detection.
 
