@@ -79,7 +79,7 @@ export function useTelemetry() {
       setHistory(seed)
       setLatest(seed[seed.length - 1])
       setConnected(true)
-      setTransport('Browser Simulation')
+      setTransport('Local Simulation')
       setHeartbeatLossPct(0)
       setLatencyMs(12)
       const emit = () => {
@@ -89,7 +89,7 @@ export function useTelemetry() {
         setHistory((h) => [...h.slice(-59), data])
         setHeartbeatLossPct(demoScenario() === 'outage' ? 8 : 0)
         setLatencyMs(demoScenario() === 'outage' ? 180 : 12)
-        setTransport(demoScenario() === 'outage' ? 'Simulation · degraded link' : 'Browser Simulation')
+        setTransport(demoScenario() === 'outage' ? 'Simulation · degraded link' : 'Local Simulation')
       }
       const timer = setInterval(emit, 1500)
       const onScenario = () => {
@@ -98,10 +98,10 @@ export function useTelemetry() {
         setLatest(data)
         setHistory((h) => [...h.slice(-59), data])
       }
-      window.addEventListener('samadhaan-demo-scenario', onScenario)
+      window.addEventListener('samadhaan-scenario-change', onScenario)
       return () => {
         clearInterval(timer)
-        window.removeEventListener('samadhaan-demo-scenario', onScenario)
+        window.removeEventListener('samadhaan-scenario-change', onScenario)
       }
     }
 
@@ -159,9 +159,9 @@ const fallbackSummary = () => ({
   failure_window_estimate: 'Trend under observation',
   structural_stability_index: 78,
   generated_at: new Date().toISOString(),
-  narrative: 'Browser demonstration mode: composite risk is calculated from simulated tilt and acoustic telemetry using the same client-side risk scoring path.',
+  narrative: 'Local scenario mode: composite risk is calculated from simulated tilt and acoustic telemetry using the same client-side risk scoring path.',
   recommendation: 'Continue monitoring and verify elevated readings in the affected sector.',
-  note: 'Demo values are simulated for presentation; they are not live mine measurements.',
+  note: 'Scenario values are simulated for controlled testing; they are not live mine measurements.',
 })
 
 export async function fetchAISummary() {
