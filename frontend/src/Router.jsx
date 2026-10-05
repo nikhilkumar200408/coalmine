@@ -5,13 +5,13 @@ import GovernmentPage from './pages/GovernmentPage'
 import EngineerPage from './pages/EngineerPage'
 import WorkerPage from './pages/WorkerPage'
 import ResidentPage from './pages/ResidentPage'
-import DemoPage from './pages/DemoPage'
+import MonitoringConsole from './pages/DemoPage'
 
 export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<DemoPage />} />
+        <Route path="/" element={<MonitoringConsole />} />
         <Route element={<StaffLayout />}>
           <Route path="/government" element={<GovernmentPage />} />
           <Route path="/engineer" element={<EngineerPage />} />
