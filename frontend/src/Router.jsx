@@ -5,7 +5,7 @@ import GovernmentPage from './pages/GovernmentPage'
 import EngineerPage from './pages/EngineerPage'
 import WorkerPage from './pages/WorkerPage'
 import ResidentPage from './pages/ResidentPage'
-import MonitoringConsole from './pages/DemoPage'
+import MonitoringConsole from './pages/MonitoringConsole'
 
 export default function Router() {
   return (
