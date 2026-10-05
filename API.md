@@ -14,7 +14,7 @@ If `SAMADHAAN_ADMIN_TOKEN` is set, mutating endpoints require header `X-Admin-To
 | GET | `/api/v1/alerts` · POST `/alerts/{id}/acknowledge` | derived alerts |
 | GET | `/api/v1/analytics?range=1H|6H|24H|7D` · `/network` · `/system-health` · `/digital-twin?layer&window` · `/routes` · `/mine` | views |
 | POST | `/api/v1/scenarios` (create) · `/{id}/run` · `/{id}/stop` · GET `/{id}/state` · `/{id}/report` | Scenario Lab |
-| POST | `/api/v1/scenarios/run-demo/{A..E}` · `/api/v1/reset` · `/api/v1/demo {active}` | one-click demos / reset / demo mode |
+| POST | `/api/v1/scenarios/run-demo/{A..E}` · `/api/v1/reset` · `/api/v1/demo {active}` | one-click scenario tests / reset / scenario mode |
 | POST/GET | `/api/v1/bridge/status` | serial bridge status (port, baud, pkts/s, buffered) |
 
 **WebSocket events:** `state`, `telemetry` (REAL only, legacy shape + `risk_level/confidence/decision`), `risk_update`, `node_status`, `incident_created`, `incident_updated`, `network_status`, `scenario_started`, `scenario_tick`, `scenario_finished`, `system_health`, `baseline_updated`, `sensor_fault`, `route_update`.
