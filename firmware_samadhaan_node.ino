@@ -616,11 +616,11 @@ void loop() {
   } else if (currentScreen == 3) {
     display.setCursor(2, topOffset + 2);  display.print(txt("Pitch dev: ", "Jhukav: ")); display.print((int)pitchDev); display.print((char)247);
     display.setCursor(2, topOffset + 14); display.print(txt("Roll dev:  ", "Ghoornan: ")); display.print((int)rollDev); display.print((char)247);
-    display.setCursor(2, topOffset + 26); display.print(txt("Temp:      ", "Tapmaan: ")); display.print((int)tempC); display.print("C");
-    display.setCursor(2, topOffset + 38); display.print(txt("Humidity:  ", "Namee: ")); display.print((int)humidity); display.print("%");
+    display.setCursor(2, topOffset + 26); display.print(txt("Temp:      ", "Tapmaan: ")); if (DHT_CONNECTED && dhtEverRead) { display.print((int)tempC); display.print("C"); } else { display.print("N/C"); }
+    display.setCursor(2, topOffset + 38); display.print(txt("Humidity:  ", "Namee: ")); if (DHT_CONNECTED && dhtEverRead) { display.print((int)humidity); display.print("%"); } else { display.print("N/C"); }
   } else if (currentScreen == 4) {
     int riskScore = map(constrain(abs((int)pitchDev) + abs((int)rollDev) + (soundLevel / 10), 0, 150), 0, 150, 5, 99);
-    display.setCursor(4, topOffset); display.print(txt("AI ANOMALY ENGINE", "AI JOKHIM SUCHAK"));
+    display.setCursor(4, topOffset); display.print(txt("RISK ASSESSMENT", "JOKHIM MULYANKAN"));
     display.drawRect(4, topOffset + 12, 120, 18, SSD1306_WHITE);
     display.setCursor(10, topOffset + 17);
     display.print(txt("RISK: ", "JOKHIM: ")); display.print(riskScore); display.print("/100");
