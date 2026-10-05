@@ -20,7 +20,7 @@ Wi-Fi is disabled in the current validated configuration. LoRa, gateway and 4G/c
 4. Show how the risk state changes when abnormal conditions persist.
 5. Explain that scenario values are simulated and are not live mine measurements.
 6. Show the map, trends, node health and risk explanation.
-7. Disconnect the backend or communication path to inspect the local/offline behaviour where configured.
+7. Inspect the communication/status indicators and confirm the dashboard distinguishes live physical telemetry from controlled scenario data.
 8. Reset the scenario and return to the nominal state.
 
 ## 3. REAL vs SIMULATED vs ESTIMATED
@@ -46,6 +46,7 @@ Wi-Fi is disabled in the current validated configuration. LoRa, gateway and 4G/c
 - React dashboard connected to the backend
 - React monitoring dashboard
 - Explainable sensor-based risk scoring
+- Explicit REAL / SIMULATED / PROPOSED claim separation
 - Controlled scenario testing
 - Map and temporal visualisation
 
@@ -62,3 +63,7 @@ Wi-Fi is disabled in the current validated configuration. LoRa, gateway and 4G/c
 ## 6. Evaluation note
 
 The controlled scenarios are intended to test system behaviour and alert logic before field deployment. They are not evidence of mine-site model accuracy. Operational deployment would require site-specific calibration, independent engineering validation and appropriate mine-safety approval.
+
+## 7. Evidence discipline
+
+Use the real hardware, dashboard and scenario images already included in the repository. Do not describe simulated values, illustrative map geometry or proposed field communications as measured field results. Do not add accuracy figures without a recorded measurement.
